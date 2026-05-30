@@ -1,0 +1,212 @@
+/* ============================================================
+   Daniele Summit — Design Tokens
+   Cor, tipografia, espaçamento, raio, sombra, motion.
+   Importe este arquivo ou copie as variáveis para :root.
+   Fontes: Space Grotesk (display) + Inter (corpo) — Google Fonts.
+   @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+   ============================================================ */
+
+:root {
+  /* ---------- COR · superfícies ---------- */
+  --bg:            #050818;  /* fundo base (azul-noite) */
+  --bg-2:          #080c1f;  /* fundo de seção alternada */
+  --bg-footer:     #020510;  /* rodapé / mais profundo */
+  --card-bg:       rgba(10, 14, 40, 0.70);   /* cards translúcidos */
+  --select-bg:     #0d1130;  /* fundo de menus/options */
+
+  /* ---------- COR · acentos neon ---------- */
+  --blue:          oklch(0.72 0.22 220);
+  --purple:        oklch(0.72 0.22 290);
+  --blue-dim:      oklch(0.55 0.18 220);
+  --purple-dim:    oklch(0.55 0.18 290);
+  --magenta:       #ff6af0;  /* extensão de gradiente em headlines */
+
+  /* gradiente de marca (use em fills de texto, botões, barras) */
+  --grad-brand:    linear-gradient(135deg, var(--blue), var(--purple));
+  --grad-brand-90: linear-gradient(90deg, var(--blue), var(--purple) 70%, var(--magenta));
+  --grad-divider:  linear-gradient(90deg, transparent, var(--blue), var(--purple), transparent);
+
+  /* ---------- COR · texto ---------- */
+  --fg:            #f0f4ff;  /* texto primário */
+  --fg-muted:      #7a85a8;  /* texto secundário */
+  --fg-on-image:   rgba(240, 244, 255, 0.85);
+
+  /* ---------- COR · linhas ---------- */
+  --border:        rgba(120, 140, 255, 0.15);
+  --border-hover:  rgba(100, 140, 255, 0.40);
+
+  /* glow tints (para box-shadows) */
+  --glow:          rgba(100, 100, 255, 0.30);
+  --glow-strong:   rgba(100, 100, 255, 0.50);
+
+  /* ---------- TIPOGRAFIA · famílias ---------- */
+  --font-display:  'Space Grotesk', system-ui, sans-serif;
+  --font-body:     'Inter', system-ui, sans-serif;
+
+  /* escala fluida */
+  --text-hero:     clamp(2.8rem, 8vw, 7rem);
+  --text-h1:       clamp(2rem, 5vw, 3.4rem);
+  --text-h2:       clamp(1.6rem, 3.5vw, 2.4rem);
+  --text-lead:     clamp(1rem, 2vw, 1.15rem);
+  --text-body:     1rem;
+  --text-sm:       0.9rem;
+  --text-xs:       0.78rem;
+  --text-label:    0.75rem;
+
+  --tracking-tight:  -0.04em;   /* hero */
+  --tracking-head:   -0.03em;   /* títulos */
+  --tracking-label:  0.15em;    /* eyebrows MAIÚSCULAS */
+
+  --leading-display: 1.05;
+  --leading-body:    1.65;
+
+  /* ---------- ESPAÇAMENTO ---------- */
+  --space-section:   100px;   /* padding vertical de seção */
+  --gutter:          6vw;     /* margem lateral */
+  --max-width:       1200px;
+  --gap:             1.5rem;
+
+  /* ---------- RAIO ---------- */
+  --radius-pill:     50px;    /* botões, chips, badges, toggles */
+  --radius-sm:       10px;    /* inputs */
+  --radius-md:       16px;    /* cards pequenos */
+  --radius-lg:       20px;
+  --radius-xl:       24px;    /* cards/containers grandes */
+
+  /* ---------- SOMBRA / GLOW ---------- */
+  --shadow-glow:        0 0 40px var(--glow);
+  --shadow-glow-strong: 0 0 60px var(--glow-strong);
+  --shadow-text:        0 2px 20px rgba(0, 0, 0, 0.7);
+
+  /* ---------- MOTION ---------- */
+  --ease:            cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast:        0.2s;
+  --dur:             0.3s;
+  --dur-reveal:      0.7s;
+  --blur-glass:      blur(12px);
+}
+
+/* ============================================================
+   ESTILOS SEMÂNTICOS — aplique direto ou copie como base
+   ============================================================ */
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  line-height: var(--leading-body);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  letter-spacing: var(--tracking-head);
+  line-height: var(--leading-display);
+}
+
+.ds-hero-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-hero);
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.0;
+}
+
+.ds-h1 { font-size: var(--text-h1); font-weight: 700; }
+.ds-h2 { font-size: var(--text-h2); font-weight: 600; }
+
+.ds-lead { font-size: var(--text-lead); color: var(--fg-muted); line-height: var(--leading-body); }
+.ds-body { font-size: var(--text-body); }
+.ds-muted { color: var(--fg-muted); }
+
+/* eyebrow / label */
+.ds-eyebrow {
+  font-size: var(--text-label);
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+/* texto com fill em gradiente de marca */
+.ds-gradient-text {
+  background: var(--grad-brand-90);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ---------- componentes-base ---------- */
+.ds-btn-primary {
+  display: inline-block;
+  background: var(--grad-brand);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 16px 40px;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: var(--shadow-glow);
+  transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+.ds-btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-glow-strong); }
+
+.ds-btn-secondary {
+  display: inline-block;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: 16px 36px;
+  color: var(--fg-muted);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.ds-btn-secondary:hover { border-color: var(--blue); color: var(--fg); }
+
+.ds-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  backdrop-filter: var(--blur-glass);
+  transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+.ds-card:hover { border-color: var(--border-hover); transform: translateY(-4px); }
+
+.ds-chip {
+  display: inline-block;
+  font-size: var(--text-xs);
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(0, 180, 255, 0.08);
+  border: 1px solid rgba(0, 180, 255, 0.18);
+  color: var(--blue);
+}
+
+.ds-input {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  outline: none;
+  transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+.ds-input:focus {
+  border-color: rgba(100, 140, 255, 0.5);
+  box-shadow: 0 0 0 3px rgba(100, 140, 255, 0.1);
+}
+
+.ds-divider {
+  height: 1px;
+  background: var(--grad-divider);
+  opacity: 0.4;
+}
